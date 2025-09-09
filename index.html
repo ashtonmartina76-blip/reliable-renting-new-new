@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reliable Renting – Car Rental in Curaçao</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --brand-blue:#0a3d91; --brand-blue-600:#0c4fb8; --brand-green:#2ad66a;
+    --text:#0e1a2b; --muted:#5b6b86; --line:#e9eef6; --card:#ffffff;
+    --radius:14px; --shadow:0 12px 36px rgba(15,23,42,.14); --shadow-soft:0 6px 20px rgba(15,23,42,.10);
+    --soft-gray:#dce1eb;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; color:var(--text); background:#fff; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  a{color:var(--brand-blue-600); text-decoration:none} a:hover{text-decoration:underline}
+  .container{width:min(1120px,92vw); margin:0 auto}
+
+  /* Header */
+  header{position:sticky; top:0; z-index:70; background:var(--soft-gray); border-bottom:1px solid var(--line)}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--brand-blue)}
+  .brand img{height:40px; width:auto}
+  nav{display:flex; align-items:center}
+  nav a{margin-left:18px; color:var(--text); font-weight:600; opacity:.9; padding:8px 6px}
+  nav a:hover{opacity:1}
+
+  /* HERO video */
+  .hero-vid{position:relative; background:#000}
+  .hero-vid .media{width:100%; height:clamp(180px,28vw,320px); overflow:hidden}
+  .hero-vid video{width:100%; height:100%; object-fit:cover; display:block}
+  .hero-vid::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.22))}
+  .hero-title{position:absolute; inset:0; display:grid; place-items:center; color:#fff; text-shadow:0 8px 30px rgba(0,0,0,.35)}
+  .hero-title h1{margin:0; font-size:clamp(26px,4.6vw,48px)}
+
+  /* Sections */
+  section{scroll-margin-top:84px}
+  .section{padding:34px 0}
+  .section h2{margin:0 0 14px; font-size:clamp(22px,3.2vw,30px); color:var(--brand-blue)}
+
+  /* Cards */
+  .card{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:16px}
+  .widget-shell{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:12px}
+  #bookingWidget{min-height:780px}
+  #widgetStatus{color:#6b7a90; font-size:.9rem}
+
+  /* Why Us */
+  .why{display:grid; gap:12px}
+  @media (min-width:900px){ .why{grid-template-columns:repeat(4,1fr)} }
+  .why .card h3{margin:0 0 6px; font-size:1.05rem; color:var(--brand-blue)}
+  .why .card p{margin:0; color:var(--muted)}
+
+  /* Reserve inner */
+  #reserve.section{background:#fff}
+  .reserve-inner{background:var(--soft-gray); border-radius:16px; padding:16px}
+
+  /* Contact inner */
+  #contact.section{background:#fff}
+  .contact-inner{background:var(--soft-gray); border-radius:16px; padding:16px}
+  .contact-grid{display:grid; gap:14px}
+  @media(min-width:900px){ .contact-grid{grid-template-columns:2fr 1fr} }
+
+  .contact-actions{display:grid; gap:10px}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px;
+       padding:14px 16px; border-radius:12px; border:0; cursor:pointer; font-weight:700;}
+  .btn-wa{background:linear-gradient(180deg, var(--brand-green), #1fb85a); color:#063018}
+  .btn-ig{background:#f6f7fb; color:#333; border:1px solid #e5e9f2}
+  .btn img{width:22px; height:22px}
+  form.contact-form .row{display:grid; gap:10px}
+  @media(min-width:760px){ form.contact-form .row{grid-template-columns:1fr 1fr} }
+  form.contact-form input, form.contact-form textarea{
+    width:100%; padding:12px; border-radius:12px; border:1px solid #d9e2ef;
+    background:#fff; color:var(--text); font-size:16px; outline:none;
+  }
+  form.contact-form textarea{min-height:120px; resize:vertical}
+  .small{color:#6b7a90; font-size:.92rem}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line); padding:28px 0; color:#4a5a73}
+  .foot{display:flex; align-items:center; gap:10px; font-weight:700; color:#0a3d91}
+  .foot img{height:36px}
+
+  /* WhatsApp FAB */
+  .whatsapp-fab{position:fixed; right:16px; bottom:16px; z-index:80;
+    width:56px; height:56px; border-radius:50%; display:grid; place-items:center;
+    background:#25D366; box-shadow:0 10px 24px rgba(0,0,0,.2);}
+  .whatsapp-fab img{width:30px; height:30px}
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand"><img src="images/logo.png" alt="Reliable Renting logo"><span>Reliable Renting</span></a>
+      <nav>
+        <a href="#reserve">Reserve</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a href="#map">Find Us</a>
+        <a href="https://www.instagram.com/reliablecarrental1" target="_blank">Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO VIDEO -->
+  <section class="hero-vid">
+    <div class="media">
+      <video autoplay muted playsinline loop poster="images/hero-poster.jpg">
+        <source src="./videos/curacao-drive.mp4?v=1" type="video/mp4" />
+        <img src="images/hero-poster.jpg" alt="Curaçao driving scene" />
+      </video>
+    </div>
+    <div class="hero-title"><h1>Car Rental</h1></div>
+  </section>
+
+  <!-- Reserve -->
+  <section class="section" id="reserve">
+    <div class="container">
+      <h2>Complete Your Reservation</h2>
+      <div class="reserve-inner">
+        <div class="widget-shell" id="widgetShell" style="position:relative">
+          <div id="bookingWidget" style="display:none"></div>
+          <div id="widgetFallback" style="display:block">
+            <iframe id="fallbackFrame"
+              style="width:100%; height:1200px; border:0; background:#fff; border-radius:12px"
+              src="https://reliable-renting.caagcrm.com/public/car-rental/reservations/step1?new=1">
+            </iframe>
+            <p class="small">If the booking widget doesn’t load, use this fallback.</p>
+          </div>
+          <div id="widgetStatus" class="small" style="position:absolute; left:14px; bottom:12px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="section" id="why-us">
+    <div class="container">
+      <h2>Why book with Reliable Renting?</h2>
+      <div class="why">
+        <div class="card"><h3>✅ Book online in minutes</h3><p>Clean UI, secure checkout, instant confirmation.</p></div>
+        <div class="card"><h3>✅ Clean & well-kept cars</h3><p>Every rental delivered spotless and ready.</p></div>
+        <div class="card"><h3>✅ Delivery anywhere</h3><p>Airport, hotel, marina — we come to you.</p></div>
+        <div class="card"><h3>✅ Transparent pricing</h3><p>Clear daily rates with optional add-ons.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>Contact & Support</h2>
+      <div class="contact-inner">
+        <div class="contact-grid">
+          <div class="card">
+            <form class="contact-form" id="contactForm">
+              <div class="row">
+                <div><label>Full name</label><input id="cname" required placeholder="Your name"></div>
+                <div><label>Email</label><input id="cemail" type="email" required placeholder="you@email.com"></div>
+              </div>
+              <div class="row" style="grid-template-columns:1fr;">
+                <div><label>Message</label><textarea id="cmsg" required placeholder="Tell us about your rental..."></textarea></div>
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:8px">
+                <button class="btn btn-wa" type="submit"><img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us</button>
+                <span class="small">Prefer Instagram? <a href="https://www.instagram.com/reliablecarrental1" target="_blank">@reliablecarrental1</a></span>
+              </div>
+              <p class="small" style="margin-top:6px">We reply fast during work hours in Curaçao (AST).</p>
+            </form>
+          </div>
+          <div class="card">
+            <div class="contact-actions">
+              <a class="btn btn-wa" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!" target="_blank"><img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us</a>
+              <a class="btn btn-ig" href="https://www.instagram.com/reliablecarrental1" target="_blank">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="section" id="map">
+    <div class="container">
+      <h2>Find Us</h2>
+      <div class="card" style="overflow:hidden">
+        <iframe src="https://www.google.com/maps?q=12.117265,-68.876190&z=15&output=embed"
+          width="100%" height="400" style="border:0" allowfullscreen loading="lazy"></iframe>
+        <p class="small" style="margin-top:10px">Click the map to open directions in Google Maps.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div class="foot"><img src="images/logo.png" alt="Reliable Renting logo"><span>Reliable Renting</span></div>
+      <div><a href="#reserve">Start reservation</a> · <a href="https://www.instagram.com/reliablecarrental1" target="_blank">@reliablecarrental1</a></div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a class="whatsapp-fab" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!" target="_blank"><img src="images/whatsapp.png" alt="WhatsApp"></a>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('cname').value.trim();
+    const email = document.getElementById('cemail').value.trim();
+    const msg = document.getElementById('cmsg').value.trim();
+    const text = `Hello Reliable Renting,%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AMessage: ${encodeURIComponent(msg)}%0A%0ASent from the website.`;
+    const wa = `https://wa.me/59996830030?text=${text}`;
+    window.open(wa, '_blank', 'noopener');
+  });
+</script>
+</body>
+</html>
