@@ -4,6 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reliable Renting – Car Rental in Curaçao</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -11,7 +17,6 @@
     --brand-blue:#0a3d91; --brand-blue-600:#0c4fb8; --brand-green:#2ad66a;
     --text:#0e1a2b; --muted:#5b6b86; --line:#e9eef6; --card:#ffffff;
     --radius:14px; --shadow:0 12px 36px rgba(15,23,42,.14); --shadow-soft:0 6px 20px rgba(15,23,42,.10);
-    --soft-gray:#dce1eb;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -20,19 +25,32 @@
   .container{width:min(1120px,92vw); margin:0 auto}
 
   /* Header */
-  header{position:sticky; top:0; z-index:70; background:var(--soft-gray); border-bottom:1px solid var(--line)}
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+  header{position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--line)}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
   .brand{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--brand-blue)}
-  .brand img{height:40px; width:auto}
-  nav{display:flex; align-items:center}
-  nav a{margin-left:18px; color:var(--text); font-weight:600; opacity:.9; padding:8px 6px}
-  nav a:hover{opacity:1}
+  .brand img{height:44px; width:auto}
+  nav a{margin-left:18px; color:var(--text); font-weight:600; opacity:.9} nav a:hover{opacity:1}
 
-  /* HERO video */
-  .hero-vid{position:relative; background:#000}
-  .hero-vid .media{width:100%; height:clamp(180px,28vw,320px); overflow:hidden}
-  .hero-vid video{width:100%; height:100%; object-fit:cover; display:block}
-  .hero-vid::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.22))}
+  /* HERO VIDEO — full width, no bars */
+  .hero-vid{position:relative}
+  .hero-vid .media{
+    width:100%;
+    height:clamp(260px,40vw,520px);
+    overflow:hidden;
+    background:#000;
+  }
+  .hero-vid video{
+    width:100%;
+    height:100%;
+    object-fit:cover;            /* fills container */
+    object-position:center 70%;  /* adjust crop (70% shows more of the car) */
+    display:block;
+  }
+  .hero-vid::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.18));
+    pointer-events:none;
+  }
   .hero-title{position:absolute; inset:0; display:grid; place-items:center; color:#fff; text-shadow:0 8px 30px rgba(0,0,0,.35)}
   .hero-title h1{margin:0; font-size:clamp(26px,4.6vw,48px)}
 
@@ -41,7 +59,7 @@
   .section{padding:34px 0}
   .section h2{margin:0 0 14px; font-size:clamp(22px,3.2vw,30px); color:var(--brand-blue)}
 
-  /* Cards */
+  /* Cards / shells */
   .card{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:16px}
   .widget-shell{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:12px}
   #bookingWidget{min-height:780px}
@@ -53,41 +71,39 @@
   .why .card h3{margin:0 0 6px; font-size:1.05rem; color:var(--brand-blue)}
   .why .card p{margin:0; color:var(--muted)}
 
-  /* Reserve inner */
-  #reserve.section{background:#fff}
-  .reserve-inner{background:var(--soft-gray); border-radius:16px; padding:16px}
-
-  /* Contact inner */
-  #contact.section{background:#fff}
-  .contact-inner{background:var(--soft-gray); border-radius:16px; padding:16px}
+  /* Contact & Support */
   .contact-grid{display:grid; gap:14px}
   @media(min-width:900px){ .contact-grid{grid-template-columns:2fr 1fr} }
-
-  .contact-actions{display:grid; gap:10px}
-  .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px;
-       padding:14px 16px; border-radius:12px; border:0; cursor:pointer; font-weight:700;}
+  .contact-actions{display:grid; gap:10px; grid-template-columns:1fr}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:14px 16px; border-radius:12px; border:0; cursor:pointer; font-weight:700}
   .btn-wa{background:linear-gradient(180deg, var(--brand-green), #1fb85a); color:#063018}
   .btn-ig{background:#f6f7fb; color:#333; border:1px solid #e5e9f2}
   .btn img{width:22px; height:22px}
+  .btn:active{transform:translateY(1px)}
   form.contact-form .row{display:grid; gap:10px}
   @media(min-width:760px){ form.contact-form .row{grid-template-columns:1fr 1fr} }
   form.contact-form input, form.contact-form textarea{
-    width:100%; padding:12px; border-radius:12px; border:1px solid #d9e2ef;
-    background:#fff; color:var(--text); font-size:16px; outline:none;
+    width:100%; padding:12px; border-radius:12px; border:1px solid #d9e2ef; background:#fff; color:var(--text);
+    outline:none; transition:border-color .15s ease, box-shadow .15s ease;
   }
+  form.contact-form input:focus, form.contact-form textarea:focus{border-color:var(--brand-blue-600); box-shadow:0 0 0 3px rgba(12,79,184,.15)}
   form.contact-form textarea{min-height:120px; resize:vertical}
   .small{color:#6b7a90; font-size:.92rem}
 
   /* Footer */
   footer{border-top:1px solid var(--line); padding:28px 0; color:#4a5a73}
-  .foot{display:flex; align-items:center; gap:10px; font-weight:700; color:#0a3d91}
+  .foot{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--brand-blue)}
   .foot img{height:36px}
 
-  /* WhatsApp FAB */
-  .whatsapp-fab{position:fixed; right:16px; bottom:16px; z-index:80;
-    width:56px; height:56px; border-radius:50%; display:grid; place-items:center;
-    background:#25D366; box-shadow:0 10px 24px rgba(0,0,0,.2);}
-  .whatsapp-fab img{width:30px; height:30px}
+  /* Floating WhatsApp */
+  .whatsapp-fab{
+    position:fixed; right:18px; bottom:18px; z-index:60;
+    width:60px; height:60px; border-radius:50%;
+    display:grid; place-items:center;
+    background:#25D366; box-shadow:0 10px 24px rgba(0,0,0,.2);
+  }
+  .whatsapp-fab img{width:32px; height:32px}
+  .whatsapp-fab:hover{transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -95,13 +111,16 @@
   <!-- Header -->
   <header>
     <div class="container nav">
-      <a href="#" class="brand"><img src="images/logo.png" alt="Reliable Renting logo"><span>Reliable Renting</span></a>
+      <a href="#" class="brand" aria-label="Reliable Renting Home">
+        <img src="images/logo.png" alt="Reliable Renting logo">
+        <span>Reliable Renting</span>
+      </a>
       <nav>
         <a href="#reserve">Reserve</a>
         <a href="#why-us">Why Us</a>
         <a href="#contact">Contact</a>
         <a href="#map">Find Us</a>
-        <a href="https://www.instagram.com/reliablecarrental1" target="_blank">Instagram</a>
+        <a href="https://www.instagram.com/reliablecarrental1" target="_blank" rel="noopener">Instagram</a>
       </nav>
     </div>
   </header>
@@ -109,30 +128,26 @@
   <!-- HERO VIDEO -->
   <section class="hero-vid">
     <div class="media">
-      <video autoplay muted playsinline loop poster="images/hero-poster.jpg">
-        <source src="./videos/curacao-drive.mp4?v=1" type="video/mp4" />
-        <img src="images/hero-poster.jpg" alt="Curaçao driving scene" />
-      </video>
+      <video src="videos/curacao-drive.mp4" autoplay muted loop playsinline></video>
     </div>
     <div class="hero-title"><h1>Car Rental</h1></div>
   </section>
 
-  <!-- Reserve -->
+  <!-- Booking widget -->
   <section class="section" id="reserve">
     <div class="container">
       <h2>Complete Your Reservation</h2>
-      <div class="reserve-inner">
-        <div class="widget-shell" id="widgetShell" style="position:relative">
-          <div id="bookingWidget" style="display:none"></div>
-          <div id="widgetFallback" style="display:block">
-            <iframe id="fallbackFrame"
-              style="width:100%; height:1200px; border:0; background:#fff; border-radius:12px"
-              src="https://reliable-renting.caagcrm.com/public/car-rental/reservations/step1?new=1">
-            </iframe>
-            <p class="small">If the booking widget doesn’t load, use this fallback.</p>
-          </div>
-          <div id="widgetStatus" class="small" style="position:absolute; left:14px; bottom:12px;"></div>
+      <div class="widget-shell" id="widgetShell" style="position:relative">
+        <div id="bookingWidget"></div>
+        <div id="widgetFallback" style="display:none">
+          <iframe
+            id="fallbackFrame"
+            style="width:100%; height:1200px; border:0; background:#fff; border-radius:12px"
+            src="https://reliable-renting.caagcrm.com/public/car-rental/reservations/step1?new=1&brand=nilvreo1-ztm6-uryj-pjgq-drxzyzcxd1t5">
+          </iframe>
+          <p class="small">The booking widget didn’t load (ad-blocker or domain restriction). We’ve loaded the standard reservation flow instead.</p>
         </div>
+        <div id="widgetStatus" class="small" style="position:absolute; left:14px; bottom:12px;"></div>
       </div>
     </div>
   </section>
@@ -150,47 +165,59 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact & Support -->
   <section class="section" id="contact">
     <div class="container">
       <h2>Contact & Support</h2>
-      <div class="contact-inner">
-        <div class="contact-grid">
-          <div class="card">
-            <form class="contact-form" id="contactForm">
-              <div class="row">
-                <div><label>Full name</label><input id="cname" required placeholder="Your name"></div>
-                <div><label>Email</label><input id="cemail" type="email" required placeholder="you@email.com"></div>
+      <div class="contact-grid">
+        <div class="card">
+          <form class="contact-form" id="contactForm">
+            <div class="row">
+              <div>
+                <label for="cname">Full name</label>
+                <input id="cname" required placeholder="Your name">
               </div>
-              <div class="row" style="grid-template-columns:1fr;">
-                <div><label>Message</label><textarea id="cmsg" required placeholder="Tell us about your rental..."></textarea></div>
+              <div>
+                <label for="cemail">Email</label>
+                <input id="cemail" type="email" required placeholder="you@email.com">
               </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:8px">
-                <button class="btn btn-wa" type="submit"><img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us</button>
-                <span class="small">Prefer Instagram? <a href="https://www.instagram.com/reliablecarrental1" target="_blank">@reliablecarrental1</a></span>
-              </div>
-              <p class="small" style="margin-top:6px">We reply fast during work hours in Curaçao (AST).</p>
-            </form>
-          </div>
-          <div class="card">
-            <div class="contact-actions">
-              <a class="btn btn-wa" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!" target="_blank"><img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us</a>
-              <a class="btn btn-ig" href="https://www.instagram.com/reliablecarrental1" target="_blank">Instagram</a>
             </div>
+            <div class="row" style="grid-template-columns:1fr;">
+              <div>
+                <label for="cmsg">Message</label>
+                <textarea id="cmsg" required placeholder="Tell us about your rental dates, pickup point, and any extras."></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:8px">
+              <button class="btn btn-wa" type="submit">
+                <img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us
+              </button>
+              <span class="small">Prefer Instagram? <a href="https://www.instagram.com/reliablecarrental1" target="_blank" rel="noopener">DM @reliablecarrental1</a></span>
+            </div>
+          </form>
+        </div>
+        <div class="card">
+          <div class="contact-actions">
+            <a class="btn btn-wa" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!%20I%27d%20like%20help%20with%20a%20car%20rental." target="_blank" rel="noopener">
+              <img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us
+            </a>
+            <a class="btn btn-ig" href="https://www.instagram.com/reliablecarrental1" target="_blank" rel="noopener">Instagram</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Map -->
+  <!-- Find Us -->
   <section class="section" id="map">
     <div class="container">
       <h2>Find Us</h2>
       <div class="card" style="overflow:hidden">
-        <iframe src="https://www.google.com/maps?q=12.117265,-68.876190&z=15&output=embed"
-          width="100%" height="400" style="border:0" allowfullscreen loading="lazy"></iframe>
-        <p class="small" style="margin-top:10px">Click the map to open directions in Google Maps.</p>
+        <iframe
+          src="https://www.google.com/maps?q=12.117265,-68.876190&z=15&output=embed"
+          width="100%" height="400" style="border:0" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
   </section>
@@ -198,24 +225,74 @@
   <!-- Footer -->
   <footer>
     <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-      <div class="foot"><img src="images/logo.png" alt="Reliable Renting logo"><span>Reliable Renting</span></div>
-      <div><a href="#reserve">Start reservation</a> · <a href="https://www.instagram.com/reliablecarrental1" target="_blank">@reliablecarrental1</a></div>
+      <div class="foot">
+        <img src="images/logo.png" alt="Reliable Renting logo">
+        <span>Reliable Renting</span>
+      </div>
+      <div>
+        <a href="#reserve">Start reservation</a> ·
+        <a href="https://www.instagram.com/reliablecarrental1" target="_blank" rel="noopener">@reliablecarrental1</a>
+      </div>
     </div>
   </footer>
 
-  <!-- WhatsApp FAB -->
-  <a class="whatsapp-fab" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!" target="_blank"><img src="images/whatsapp.png" alt="WhatsApp"></a>
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp-fab" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!%20I%27d%20like%20to%20book%20a%20car." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <img src="images/whatsapp.png" alt="WhatsApp">
+  </a>
 
 <script>
+  /* Contact form -> WhatsApp */
   document.getElementById('contactForm').addEventListener('submit', (e)=>{
     e.preventDefault();
     const name = document.getElementById('cname').value.trim();
     const email = document.getElementById('cemail').value.trim();
     const msg = document.getElementById('cmsg').value.trim();
     const text = `Hello Reliable Renting,%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AMessage: ${encodeURIComponent(msg)}%0A%0ASent from the website.`;
-    const wa = `https://wa.me/59996830030?text=${text}`;
-    window.open(wa, '_blank', 'noopener');
+    window.open(`https://wa.me/59996830030?text=${text}`, '_blank', 'noopener');
   });
+
+  /* Booking widget (integrator) with fallback */
+  const statusEl = document.getElementById('widgetStatus');
+  function setStatus(msg){ statusEl.textContent = msg || ""; }
+  function showFallback(){
+    document.getElementById('bookingWidget').style.display = 'none';
+    document.getElementById('widgetFallback').style.display = 'block';
+    setStatus("Using fallback booking frame.");
+  }
+  const INTEGRATOR_SRC = "https://d352gpv2ubbopv.cloudfront.net/1757346707/assets/js/snippets/integrator.js?id=a32a2ce8bccd86134fb1a1ac4c152f3b";
+  function loadIntegrator(){
+    return new Promise((resolve,reject)=>{
+      if (window.Integrator) return resolve();
+      const s=document.createElement('script');
+      s.src=INTEGRATOR_SRC; s.async=true;
+      s.onload=()=>resolve();
+      s.onerror=()=>reject(new Error("Failed to load integrator script"));
+      document.head.appendChild(s);
+    });
+  }
+  function mountWidget(){
+    const el = "#bookingWidget";
+    try{
+      if (window.Integrator?.mount)  { window.Integrator.mount ({ element: el }); setStatus("Widget mounted.");  return true; }
+      if (window.Integrator?.init)   { window.Integrator.init  ({ element: el }); setStatus("Widget initialized."); return true; }
+      if (window.Integrator?.render) { window.Integrator.render({ element: el }); setStatus("Widget rendered.");   return true; }
+      const c=document.querySelector(el); if(c && c.children.length>0){ setStatus("Widget auto-rendered."); return true; }
+    }catch(e){ console.warn("Mount error:", e); }
+    return false;
+  }
+  async function startWidget(){
+    setStatus("Loading booking widget…");
+    try{
+      await loadIntegrator();
+      const ok = mountWidget();
+      if (!ok) setTimeout(()=>{ if(!mountWidget()) showFallback(); }, 400);
+    }catch(err){
+      console.warn(err); setStatus("Couldn’t load widget."); showFallback();
+    }
+  }
+  if (document.readyState === "complete" || document.readyState === "interactive") startWidget();
+  else document.addEventListener("DOMContentLoaded", startWidget);
 </script>
 </body>
 </html>
