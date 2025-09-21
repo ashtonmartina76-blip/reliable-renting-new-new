@@ -5,11 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reliable Renting – Car Rental in Curaçao</title>
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/favicon.png">
-
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -53,8 +50,8 @@
   .hero-vid video{
     width:100%;
     height:100%;
-    object-fit:cover;            /* fill, no black bars */
-    object-position:center 70%;  /* keep car visible */
+    object-fit:cover;
+    object-position:center 70%;
     display:block;
   }
   .hero-vid::after{
@@ -63,17 +60,12 @@
     pointer-events:none;
   }
   .hero-title{
-    position:absolute; inset:0;
-    display:grid; place-items:center;
-    z-index:2; text-align:center;
+    position:absolute; inset:0; display:grid; place-items:center; z-index:2; text-align:center;
   }
-  /* Transparent letters (no background box) */
   .hero-title h1{
-    margin:0;
-    font-size:clamp(26px,5vw,48px);
-    font-weight:700;
-    color:rgba(255,255,255,.9);     /* semi-transparent white */
-    text-shadow:0 6px 18px rgba(0,0,0,.45); /* readability on bright frames */
+    margin:0; font-size:clamp(26px,5vw,48px); font-weight:700;
+    color:rgba(255,255,255,.9);
+    text-shadow:0 6px 18px rgba(0,0,0,.45);
   }
 
   /* Why Us */
@@ -82,7 +74,7 @@
   .why .card h3{margin:0 0 6px; font-size:1.05rem; color:var(--brand-blue)}
   .why .card p{margin:0; color:var(--muted)}
 
-  /* Contact & Support (exactly like before) */
+  /* Contact & Support */
   .contact-grid{display:grid; gap:16px}
   @media(min-width:820px){ .contact-grid{grid-template-columns:2fr 1fr} }
   .contact-form .row{display:grid; gap:10px}
@@ -98,6 +90,18 @@
   .btn-wa{background:linear-gradient(180deg, var(--brand-green), #1fb85a); color:#063018}
   .btn-ig{background:#f6f7fb; color:#333; border:1px solid #e5e9f2}
   .btn img{width:20px; height:20px}
+
+  /* Inline flyer (scaled & centered) */
+  .promo-inline-img{
+    width:100%;
+    max-width:480px;   /* keep it modest */
+    height:auto;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(15,23,42,.15);
+    border:1px solid var(--line);
+    display:block;
+    margin:0 auto;     /* center */
+  }
 
   /* Footer */
   footer{border-top:1px solid var(--line); padding:28px 0; color:#4a5a73}
@@ -133,7 +137,7 @@
   </div>
 </header>
 
-<!-- HERO VIDEO (top) -->
+<!-- HERO VIDEO -->
 <section class="hero-vid">
   <div class="media">
     <video src="videos/curacao-drive.mp4" autoplay muted loop playsinline></video>
@@ -171,13 +175,25 @@
   </div>
 </section>
 
-<!-- Contact & Support (restored layout) -->
+<!-- Special Offer (Inline Flyer only) -->
+<section class="section" id="special-offer">
+  <div class="container">
+    <h2 style="margin-bottom:12px;">Special Offer</h2>
+    <a href="#reserve" aria-label="See offer and reserve">
+      <img src="images/saltwater-flyer.jpg"
+           alt="Special Days at Saltwater — 10% discount on all menu, Monday to Wednesday, 12PM–6PM."
+           class="promo-inline-img">
+    </a>
+  </div>
+</section>
+
+<!-- Contact & Support -->
 <section class="section" id="contact">
   <div class="container">
     <h2>Contact & Support</h2>
 
     <div class="contact-grid">
-      <!-- Left: form with WhatsApp inline button + IG text -->
+      <!-- Left: form + inline WA button + IG text -->
       <div class="card">
         <form class="contact-form" id="contactForm">
           <div class="row">
@@ -206,7 +222,7 @@
         </form>
       </div>
 
-      <!-- Right: large WhatsApp + Instagram buttons -->
+      <!-- Right: big WA + Instagram buttons -->
       <div class="card" style="display:flex; flex-direction:column; gap:14px">
         <a class="btn btn-wa" style="width:100%" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!%20I%27d%20like%20help%20with%20a%20car%20rental." target="_blank" rel="noopener">
           <img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us
