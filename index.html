@@ -6,7 +6,6 @@
 <title>Reliable Renting – Car Rental in Curaçao</title>
 
 <link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="apple-touch-icon" href="images/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -33,30 +32,23 @@
   .section{padding:34px 0}
   .section h2{margin:0 0 14px; font-size:clamp(22px,3.2vw,30px); color:var(--brand-blue)}
 
-  /* Cards */
-  .card{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:16px}
-  .widget-shell{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:12px}
-  #bookingWidget{min-height:780px}
-  #widgetStatus{color:#6b7a90; font-size:.9rem}
-
-  /* HERO VIDEO (top) */
+  /* === HERO IMAGE (Option A: show full image, no crop) === */
   .hero-vid{position:relative}
   .hero-vid .media{
     width:100%;
-    height:clamp(260px,40vw,520px);
-    overflow:hidden;
-    background:#000;
+    height:auto;            /* let the image decide the height */
+    background:#0a3d91;     /* nice fallback color behind image margins if any */
   }
-  .hero-vid video{
+  .hero-vid img{
     width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center 70%;
+    height:auto;            /* preserve aspect ratio – no cropping */
     display:block;
+    object-fit:contain;     /* guard against any cropping */
   }
+  /* overlay & title */
   .hero-vid::after{
     content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg,rgba(0,0,0,.24),rgba(0,0,0,.14));
+    background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.12));
     pointer-events:none;
   }
   .hero-title{
@@ -64,9 +56,15 @@
   }
   .hero-title h1{
     margin:0; font-size:clamp(26px,5vw,48px); font-weight:700;
-    color:rgba(255,255,255,.9);
+    color:rgba(255,255,255,.85); /* slightly transparent */
     text-shadow:0 6px 18px rgba(0,0,0,.45);
   }
+
+  /* Cards / shells */
+  .card{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:16px}
+  .widget-shell{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow-soft); padding:12px}
+  #bookingWidget{min-height:780px}
+  #widgetStatus{color:#6b7a90; font-size:.9rem; margin-top:8px}
 
   /* Why Us */
   .why{display:grid; gap:12px}
@@ -91,16 +89,16 @@
   .btn-ig{background:#f6f7fb; color:#333; border:1px solid #e5e9f2}
   .btn img{width:20px; height:20px}
 
-  /* Inline flyer (scaled & centered) */
+  /* Inline flyer */
   .promo-inline-img{
     width:100%;
-    max-width:480px;   /* keep it modest */
+    max-width:480px;
     height:auto;
     border-radius:12px;
     box-shadow:0 8px 20px rgba(15,23,42,.15);
     border:1px solid var(--line);
     display:block;
-    margin:0 auto;     /* center */
+    margin:0 auto;
   }
 
   /* Footer */
@@ -111,7 +109,7 @@
   .footer-grid{display:grid; gap:18px; grid-template-columns:1fr 1fr 1fr; align-items:start}
   @media(max-width:820px){ .footer-grid{grid-template-columns:1fr; } }
 
-  /* WhatsApp floating */
+  /* Floating WhatsApp */
   .whatsapp-fab{
     position:fixed; right:18px; bottom:18px; z-index:60;
     width:60px; height:60px; border-radius:50%;
@@ -137,10 +135,10 @@
   </div>
 </header>
 
-<!-- HERO VIDEO -->
+<!-- HERO (full image, no crop) -->
 <section class="hero-vid">
   <div class="media">
-    <video src="videos/curacao-drive.mp4" autoplay muted loop playsinline></video>
+    <img src="images/banner.png?v=4" alt="Reliable Renting in Curaçao">
   </div>
   <div class="hero-title"><h1>Car Rental</h1></div>
 </section>
@@ -155,7 +153,6 @@
         <iframe
           style="width:100%; height:1200px; border:0; border-radius:12px; background:#fff"
           src="https://reliable-renting.caagcrm.com/public/car-rental/reservations/step1?new=1&brand=nilvreo1-ztm6-uryj-pjgq-drxzyzcxd1t5"></iframe>
-        <p class="small">The booking widget didn’t load. We’ve loaded the standard reservation form instead.</p>
       </div>
       <div id="widgetStatus" class="small"></div>
     </div>
@@ -175,7 +172,7 @@
   </div>
 </section>
 
-<!-- Special Offer (Inline Flyer only) -->
+<!-- Special Offer (inline flyer) -->
 <section class="section" id="special-offer">
   <div class="container">
     <h2 style="margin-bottom:12px;">Special Offer</h2>
@@ -193,7 +190,6 @@
     <h2>Contact & Support</h2>
 
     <div class="contact-grid">
-      <!-- Left: form + inline WA button + IG text -->
       <div class="card">
         <form class="contact-form" id="contactForm">
           <div class="row">
@@ -222,7 +218,6 @@
         </form>
       </div>
 
-      <!-- Right: big WA + Instagram buttons -->
       <div class="card" style="display:flex; flex-direction:column; gap:14px">
         <a class="btn btn-wa" style="width:100%" href="https://wa.me/59996830030?text=Hi%20Reliable%20Renting!%20I%27d%20like%20help%20with%20a%20car%20rental." target="_blank" rel="noopener">
           <img src="images/whatsapp.png" alt="WhatsApp"> WhatsApp us
@@ -270,11 +265,38 @@
   </div>
 </footer>
 
-<!-- WhatsApp floating -->
+<!-- Floating WhatsApp -->
 <a class="whatsapp-fab" href="https://wa.me/59996830030" target="_blank"><img src="images/whatsapp.png" alt=""></a>
 
+<!-- Booking widget loader (with fallback) -->
 <script>
-/* Contact form -> WhatsApp DM prefill */
+const WIDGET_SCRIPT = "https://d352gpv2ubbopv.cloudfront.net/1757346707/assets/js/snippets/integrator.js?id=a32a2ce8bccd86134fb1a1ac4c152f3b";
+
+function showFallback() {
+  document.getElementById("bookingWidget").style.display = "none";
+  document.getElementById("widgetFallback").style.display = "block";
+  const st = document.getElementById("widgetStatus");
+  if (st) st.textContent = "Loaded standard reservation form.";
+}
+
+function loadBookingWidget() {
+  const s = document.createElement("script");
+  s.src = WIDGET_SCRIPT; s.async = true;
+  s.onload = () => {
+    try {
+      if (window.Integrator?.mount) {
+        window.Integrator.mount({ element: "#bookingWidget" });
+        const st = document.getElementById("widgetStatus");
+        if (st) st.textContent = "Booking widget ready.";
+      } else showFallback();
+    } catch { showFallback(); }
+  };
+  s.onerror = showFallback;
+  document.head.appendChild(s);
+}
+document.addEventListener("DOMContentLoaded", loadBookingWidget);
+
+/* Contact form -> WhatsApp prefill */
 document.getElementById('contactForm').addEventListener('submit', (e)=>{
   e.preventDefault();
   const name = document.getElementById('cname').value.trim();
@@ -283,41 +305,6 @@ document.getElementById('contactForm').addEventListener('submit', (e)=>{
   const text = `Hello Reliable Renting,%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AMessage: ${encodeURIComponent(msg)}%0A%0ASent from the website.`;
   window.open(`https://wa.me/59996830030?text=${text}`, '_blank', 'noopener');
 });
-
-/* Booking widget with fallback */
-const INTEGRATOR_SRC="https://d352gpv2ubbopv.cloudfront.net/1757346707/assets/js/snippets/integrator.js?id=a32a2ce8bccd86134fb1a1ac4c152f3b";
-const statusEl=document.getElementById('widgetStatus');
-function setStatus(m){statusEl.textContent=m||""}
-function showFallback(){
-  document.getElementById('bookingWidget').style.display='none';
-  document.getElementById('widgetFallback').style.display='block';
-  setStatus("Using fallback booking frame.");
-}
-function loadIntegrator(){
-  return new Promise((res,rej)=>{
-    if(window.Integrator) return res();
-    const s=document.createElement('script');
-    s.src=INTEGRATOR_SRC; s.async=true;
-    s.onload=()=>res(); s.onerror=()=>rej();
-    document.head.appendChild(s);
-  });
-}
-function mountWidget(){
-  try{
-    if(window.Integrator?.mount){window.Integrator.mount({element:"#bookingWidget"}); setStatus("Widget mounted."); return true;}
-    if(window.Integrator?.init){window.Integrator.init({element:"#bookingWidget"}); setStatus("Widget initialized."); return true;}
-  }catch(_){}
-  return false;
-}
-async function startWidget(){
-  setStatus("Loading booking widget…");
-  try{
-    await loadIntegrator();
-    const ok=mountWidget();
-    if(!ok) setTimeout(()=>{ if(!mountWidget()) showFallback(); }, 400);
-  }catch(_){ showFallback(); }
-}
-if(document.readyState!=="loading") startWidget(); else document.addEventListener("DOMContentLoaded", startWidget);
 </script>
 </body>
 </html>
