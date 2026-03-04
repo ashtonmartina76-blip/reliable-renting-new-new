@@ -189,6 +189,21 @@
       margin:0 auto;
     }
 
+    /* ====== Special Offer grid (2 images) ====== */
+    .promo-grid{
+      display:grid;
+      gap:18px;
+      align-items:start;
+      justify-items:center;
+    }
+    @media (min-width:860px){
+      .promo-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+    .promo-grid a{width:100%; display:block;}
+    .promo-grid img{width:100%; height:auto;}
+
     /* Footer */
     footer{border-top:1px solid var(--line); padding:28px 0; color:#4a5a73}
     footer h3{margin:0 0 6px; font-size:1rem; color:#0a3d91}
@@ -272,17 +287,14 @@
       <h2 class="reveal">Complete Your Reservation</h2>
 
       <div class="widget-shell reveal" id="widgetShell">
-        <div id="bookingWidget" aria-live="polite"></div>
-
-        <div id="widgetFallback" style="display:none">
-          <iframe
-            title="Reliable Renting reservation form"
-            style="width:100%; height:1200px; border:0; border-radius:12px; background:#fff"
-            src="https://reliable-renting.caagcrm.com/public/car-rental/reservations/step1?new=1&brand=nilvreo1-ztm6-uryj-pjgq-drxzyzcxd1t5"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+        <!-- FIX: Use the stable embedded reservation form directly (removes widget JS errors). -->
+        <iframe
+          title="Reliable Renting reservation form"
+          style="width:100%; height:1200px; border:0; border-radius:12px; background:#fff"
+          src="https://reliable-renting.caagcrm.com/public/car-rental/reservations/step1?new=1&brand=nilvreo1-ztm6-uryj-pjgq-drxzyzcxd1t5"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
 
         <div id="widgetStatus" class="small" aria-live="polite"></div>
       </div>
@@ -416,15 +428,30 @@
   <section class="section" id="special-offer">
     <div class="container">
       <h2 class="reveal" style="margin-bottom:12px;">Special Offer</h2>
-      <a href="#reserve" aria-label="See offer and reserve" class="reveal">
-        <img
-          src="images/saltwater-flyer.jpg"
-          alt="Special Days at Saltwater — 10% discount on all menu, Monday to Wednesday, 12PM–6PM."
-          class="promo-inline-img"
-          loading="lazy"
-          decoding="async"
-        >
-      </a>
+
+      <div class="promo-grid">
+        <!-- Offer 1 -->
+        <a href="#reserve" aria-label="See offer and reserve" class="reveal">
+          <img
+            src="images/saltwater-flyer.jpg"
+            alt="Special Days at Saltwater — 10% discount on all menu, Monday to Wednesday, 12PM–6PM."
+            class="promo-inline-img"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+
+        <!-- Offer 2 (NEW) -->
+        <a href="#reserve" aria-label="See second offer and reserve" class="reveal" data-delay="120">
+          <img
+            src="images/second-offer.jpg"
+            alt="Second special offer"
+            class="promo-inline-img"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+      </div>
     </div>
   </section>
 
@@ -490,9 +517,10 @@
     <div class="container">
       <h2 class="reveal">Find Us</h2>
       <div class="card reveal">
+        <!-- FIX: Use an OpenStreetMap embed so it never shows blank and doesn't require Google embed permissions -->
         <iframe
-          title="Reliable Renting location on Google Maps"
-          src="https://www.google.com/maps?q=12.117265,-68.876190&z=15&output=embed"
+          title="Reliable Renting location map"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-68.886190%2C12.107265%2C-68.866190%2C12.127265&amp;layer=mapnik&amp;marker=12.117265%2C-68.876190"
           width="100%"
           height="400"
           style="border:0"
@@ -535,63 +563,6 @@
   </a>
 
   <script>
-    // Booking widget loader (with fallback + timeout)
-    const WIDGET_SCRIPT =
-      "https://d352gpv2ubbopv.cloudfront.net/1757346707/assets/js/snippets/integrator.js?id=a32a2ce8bccd86134fb1a1ac4c152f3b";
-
-    let widgetMounted = false;
-
-    function setStatus(text) {
-      const st = document.getElementById("widgetStatus");
-      if (st) st.textContent = text || "";
-    }
-
-    function showFallback(reason) {
-      const booking = document.getElementById("bookingWidget");
-      const fallback = document.getElementById("widgetFallback");
-      if (booking) booking.style.display = "none";
-      if (fallback) fallback.style.display = "block";
-      setStatus(reason || "Loaded standard reservation form.");
-    }
-
-    function loadBookingWidget() {
-      setStatus("Loading booking widget…");
-
-      const timer = setTimeout(() => {
-        if (!widgetMounted) showFallback("Loading took too long — showing standard reservation form.");
-      }, 5000);
-
-      const s = document.createElement("script");
-      s.src = WIDGET_SCRIPT;
-      s.async = true;
-
-      s.onload = () => {
-        try {
-          if (window.Integrator && typeof window.Integrator.mount === "function") {
-            window.Integrator.mount({ element: "#bookingWidget" });
-            widgetMounted = true;
-            clearTimeout(timer);
-            setStatus("Booking widget ready.");
-          } else {
-            clearTimeout(timer);
-            showFallback("Widget unavailable — showing standard reservation form.");
-          }
-        } catch (err) {
-          clearTimeout(timer);
-          showFallback("Widget error — showing standard reservation form.");
-        }
-      };
-
-      s.onerror = () => {
-        clearTimeout(timer);
-        showFallback("Widget failed to load — showing standard reservation form.");
-      };
-
-      document.head.appendChild(s);
-    }
-
-    document.addEventListener("DOMContentLoaded", loadBookingWidget);
-
     // Contact form -> WhatsApp prefill (proper encoding)
     document.getElementById("contactForm").addEventListener("submit", (e) => {
       e.preventDefault();
